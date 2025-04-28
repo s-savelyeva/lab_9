@@ -12,7 +12,11 @@ using System.Windows.Shapes;
 namespace lab_9;
 
 /// <summary>
-/// Interaction logic for MainWindow.xaml
+/// Класс с методами для кнопок в приложении
+/// Поля:
+/// _currentPoint - заданная точка
+/// _savedPoint - дубликат точки для совершения операций
+/// _isPointSet - переменная для проверки, задана ли пользователем точка
 /// </summary>
 public partial class MainWindow : Window
 {
@@ -26,6 +30,9 @@ public partial class MainWindow : Window
         txtResults.Text = "Введите координаты точки и выберите операцию";
     }
     
+    /// <summary>
+    /// Метод для задания координат точки
+    /// </summary>
     private void BtnSetPoint_Click(object sender, RoutedEventArgs e)
     {
         if (double.TryParse(txtX.Text, out double x) && double.TryParse(txtY.Text, out double y))
@@ -42,6 +49,9 @@ public partial class MainWindow : Window
         }
     }
  
+    /// <summary>
+    /// Проверка, что координаты точки заданы
+    /// </summary>
     private bool CheckPointIsSet()
     {
         if (!_isPointSet)
@@ -53,11 +63,17 @@ public partial class MainWindow : Window
         return true;
     }
 
+    /// <summary>
+    /// Выводит результат операций на экран
+    /// </summary>
     private void AddResult(string operation, object result)
     {
         txtResults.Text += $"{operation}: {result}\n";
     }
 
+    /// <summary>
+    /// Уменьшает x и y на 1
+    /// </summary>
     private void BtnDecrement_Click(object sender, RoutedEventArgs e) 
     {
         if (!CheckPointIsSet()) return;
@@ -67,6 +83,9 @@ public partial class MainWindow : Window
         _currentPoint = new Point(_savedPoint);
     }
 
+    /// <summary>
+    /// Меняет координаты местами
+    /// </summary>
     private void BtnSwap_Click(object sender, RoutedEventArgs e)
     {
         if (!CheckPointIsSet()) return;
@@ -76,6 +95,9 @@ public partial class MainWindow : Window
         _currentPoint = new Point(_savedPoint);
     }
 
+    /// <summary>
+    /// Приводит Х к целому
+    /// </summary>
     private void BtnConvertToInt_Click(object sender, RoutedEventArgs e)
     {
         if (!CheckPointIsSet()) return;
@@ -85,6 +107,9 @@ public partial class MainWindow : Window
         _currentPoint = new Point(_savedPoint);
     }
 
+    /// <summary>
+    /// Приводит Y к целому
+    /// </summary>
     private void BtnConvertToDouble_Click(object sender, RoutedEventArgs e)
     {
         if (!CheckPointIsSet()) return;
@@ -94,6 +119,9 @@ public partial class MainWindow : Window
         _currentPoint = new Point(_savedPoint);
     }
 
+    /// <summary>
+    /// Вычитает из Х значение
+    /// </summary>
     private void BtnPointMinusValue_Click(object sender, RoutedEventArgs e)
     {
         if (!CheckPointIsSet()) return;
@@ -110,6 +138,9 @@ public partial class MainWindow : Window
         }
     }
 
+    /// <summary>
+    /// Вычитает из Y значение
+    /// </summary>
     private void BtnValueMinusPoint_Click(object sender, RoutedEventArgs e)
     {
         if (!CheckPointIsSet()) return;
@@ -126,6 +157,9 @@ public partial class MainWindow : Window
         }
     }
 
+    /// <summary>
+    /// Вычисляет дистанцию до точки
+    /// </summary>
     private void BtnDistance_Click(object sender, RoutedEventArgs e)
     {
         if (!CheckPointIsSet()) return;
