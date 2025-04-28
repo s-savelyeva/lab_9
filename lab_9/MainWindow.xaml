@@ -1,0 +1,66 @@
+﻿<Window x:Class="lab_9.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lab_9"
+        mc:Ignorable="d"
+        Title="Операции с точками" Height="600" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Ввод координат -->
+        <GroupBox Grid.Row="0" Header="Ввод координат" Padding="5">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="X:" VerticalAlignment="Center"/>
+                <TextBox x:Name="txtX" Width="100" Margin="5" VerticalContentAlignment="Center"/>
+                <Label Content="Y:" VerticalAlignment="Center"/>
+                <TextBox x:Name="txtY" Width="100" Margin="5" VerticalContentAlignment="Center"/>
+                <Button Content="Задать точку" Margin="10" Padding="5,2" Click="BtnSetPoint_Click"/>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- Унарные операции -->
+        <GroupBox Grid.Row="1" Header="Унарные операции" Padding="5">
+            <UniformGrid Columns="1">
+                <Button Content="Уменьшить X и Y на 1" Margin="4" Width="200" Click="BtnDecrement_Click"/>
+                <Button Content="Поменять X и Y местами" Margin="4" Width="200" Click="BtnSwap_Click"/>
+            </UniformGrid>
+        </GroupBox>
+        
+        <GroupBox Grid.Row="2" Header="Операции приведения типа" Padding="5">
+            <UniformGrid Columns="1">
+                <Button Content="Привести X к целому" Margin="4" Width="200" Click="BtnConvertToInt_Click"/>
+                <Button Content="Привести Y к double" Margin="4" Width="200" Click="BtnConvertToDouble_Click"/>
+            </UniformGrid>
+        </GroupBox>
+
+        <!-- Бинарные операции -->
+        <GroupBox Grid.Row="3" Header="Бинарные операции" Padding="5">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <Button Content="Точка - число" Margin="2" Width="120" Click="BtnPointMinusValue_Click"/>
+                    <TextBox x:Name="txtValue1" Width="80" Margin="5"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <Button Content="Число - точка" Margin="2" Width="120" Click="BtnValueMinusPoint_Click"/>
+                    <TextBox x:Name="txtValue2" Width="80" Margin="5"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <Button Content="Вычислить расстояние" Margin="2" Width="200" Click="BtnDistance_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- Результаты -->
+        <GroupBox Grid.Row="4" Header="Результаты" Padding="5">
+            <TextBox x:Name="txtResults" IsReadOnly="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"/>
+        </GroupBox>
+    </Grid>
+</Window>
